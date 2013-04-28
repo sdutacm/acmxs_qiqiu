@@ -1,0 +1,49 @@
+$def with(solution)
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+<script src="/static/js/bootstrap.min.js"></script>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span8 offset2">
+$if solution:
+	<table class="table table-bordered table-hover">
+	<thead>
+	<tr>
+	<th>姓名
+	<th>题号
+	<th>气球
+	<th>座号
+	<th>操作
+	</tr>
+	</thead>
+	$for i in solution:
+		$if i.finished == 1:
+			<tr class="success">
+			<td>$i.name1
+			<td>$i.problem_id
+			<td>$config.color[i.problem_id]
+			<td>$i.sitNo
+			<td><a href="/qiqiu/$i.solution_id/finish?status=no">恢复</a>
+			</tr>
+		$else:
+			<tr class="warning">
+			<td>$i.name1
+			<td>$i.problem_id
+			<td>$config.color[i.problem_id]
+			<td>$i.sitNo
+			<td><a href="/qiqiu/$i.solution_id/finish?status=yes">完成</a>
+			</tr>
+	</table>	
+</div>
+</div>
+</div>
+</body>
+</html>
